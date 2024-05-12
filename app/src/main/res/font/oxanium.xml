@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:fontWeight="400"
+        android:font="@font/oxanium_extralight" />
+    <font
+        android:fontWeight="400"
+        android:font="@font/oxanium_light" />
+    <font
+        android:fontWeight="400"
+        android:font="@font/oxanium_regular" />
+    <font
+        android:fontWeight="400"
+        android:font="@font/oxanium_medium" />
+    <font
+        android:fontWeight="400"
+        android:font="@font/oxanium_semibold" />
+    <font
+        android:fontWeight="400"
+        android:font="@font/oxanium_bold" />
+    <font
+        android:fontWeight="400"
+        android:font="@font/oxanium_extrabold" />
+
+
+
+
+
+</font-family>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    app:cardCornerRadius="28dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@color/tertiary80"
+        android:orientation="horizontal">
+
+        <!-- IMAGEN -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvLeagueInfo"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/ivMyTeamImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/human" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- NOMBRE Y FACCION -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <!-- NOMBRE -->
+            <TextView
+                android:id="@+id/tvMyTeamName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxanium_semibold"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:text="SampleTeam" />
+            <!-- FACCION -->
+            <TextView
+                android:id="@+id/tvMyTeamFaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxanium_medium"
+                android:textColor="@color/dark100"
+                android:textSize="12dp"
+                tools:text="SampleRace" />
+        </LinearLayout>
+
+        <!-- VALOR DE EQUIPO -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark80"
+                app:cardCornerRadius="12dp">
+
+                <TextView
+                    android:id="@+id/tvMyTeamValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/oxanium_light"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    tools:text="1256" />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- RECORD V-E-D -->
+        <TextView
+            android:id="@+id/TVMyTeamRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/oxanium_light"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            tools:text="3W - 2D - 15L" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

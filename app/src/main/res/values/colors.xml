@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="primary60">#BBE8FB</color>
+    <color name="primary80">#80D1F4</color>
+    <color name="primary100">#45B8E9</color>
+    <color name="primary120">#3294BD</color>
+    <color name="primary140">#1A6C8E</color>
+    <color name="secondary60">#FDD3E1</color>
+    <color name="secondary80">#F69DBB</color>
+    <color name="secondary100">#F4739E</color>
+    <color name="secondary120">#D55881</color>
+    <color name="secondary140">#953756</color>
+    <color name="tertiary60">#FCE2CF</color>
+    <color name="tertiary80">#F6BA8D</color>
+    <color name="tertiary100">#EA985B</color>
+    <color name="tertiary120">#D47F40</color>
+    <color name="tertiary140">#A4602D</color>
+
+    <color name="dark60">#B3BFCB</color>
+    <color name="dark80">#6A798A</color>
+    <color name="dark100">#46505D</color>
+    <color name="dark120">#292D32</color>
+    <color name="dark140">#151719</color>
+    <color name="light60">#D5DEE7</color>
+    <color name="light80">#EFF2F5</color>
+    <color name="light100">#FFFFFF</color>
+
+    <color name="success80">#BCEBE0</color>
+    <color name="success100">#28B996</color>
+    <color name="success120">#276D5C</color>
+    <color name="error80">#FAD6D6</color>
+    <color name="error100">#E47070</color>
+    <color name="error120">#B13E3E</color>
+    <color name="warning80">#FEDAAF</color>
+    <color name="warning100">#F5A94F</color>
+    <color name="warning120">#CA7816</color>
+
+
+
+
+</resources>

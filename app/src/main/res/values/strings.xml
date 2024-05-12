@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TTManager2</string>
+    <string name="latest_results">Latest results</string>
+    <string name="next_matches">Next matches</string>
+    <string name="info">Info</string>
+    <string name="leagues">Leagues</string>
+    <string name="teams">Teams</string>
+    <string name="home">Home</string>
+    <string name="new_tournaments_amp_leagues">New Events</string>
+    <string name="vs">Vs.</string>
+</resources>

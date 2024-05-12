@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvNextMatch"
+    android:layout_width="250dp"
+    android:layout_height="160dp"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="16dp"
+    android:backgroundTint="@color/secondary60"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="vertical">
+        <!-- MATCH RESULT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <!-- RESULT COLOR -->
+            <ImageView
+                android:id="@+id/ivMyResult"
+                android:layout_width="16dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/circledraw_shape" />
+            <!-- RESULT TV -->
+            <TextView
+                android:id="@+id/tvMyResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/oxanium_semibold"
+                android:textColor="@color/black"
+                tools:text="Draw" />
+
+        </LinearLayout>
+        <!-- MATCH TEAMS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginVertical="12dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- TEAM 1 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <!-- TEAM 1 ICON -->
+                <ImageView
+                    android:id="@+id/ivIconTeam1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/human" />
+                <!-- TEAM 1 NAME -->
+                <TextView
+                    android:id="@+id/tvNameTeam1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/oxanium_bold"
+                    android:text="SampleTeam"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:text="SampleTeam" />
+                <!-- TEAM 1 FACTION-->
+                <TextView
+                    android:id="@+id/tvFactionTeam1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/oxanium_semibold"
+                    android:text="SampleTeam"
+                    android:textColor="@color/dark80"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:text="SampleTeam" />
+            </LinearLayout>
+            <!-- TEAM 1 TDs -->
+            <TextView
+                android:id="@+id/tvTDTeam1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:fontFamily="@font/oxanium_semibold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                tools:text="2" />
+            <!-- Vs. -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:fontFamily="@font/oxanium_semibold"
+                android:text="Vs."
+                android:textColor="@color/dark100"
+                android:textSize="10sp"
+                android:textStyle="italic" />
+            <!-- TEAM 2 TDs -->
+            <TextView
+                android:id="@+id/tvTDTeam2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:fontFamily="@font/oxanium_semibold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                tools:text="2" />
+            <!-- TEAM 2 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <!-- TEAM 2 ICON-->
+                <ImageView
+                    android:id="@+id/ivIconTeam2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dark_elf" />
+                <!-- TEAM 2 NAME -->
+                <TextView
+                    android:id="@+id/tvNameTeam2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/oxanium_bold"
+                    android:text="SampleTeam"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:text="SampleTeam" />
+                <!-- TEAM 2 FACTION-->
+                <TextView
+                    android:id="@+id/tvFactionTeam2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/oxanium_semibold"
+                    android:text="SampleTeam"
+                    android:textColor="@color/dark80"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:text="SampleTeam" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <!-- MATCH LEAGUE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <!-- MATCH LEAGUE NAME -->
+            <TextView
+                android:id="@+id/tvMatchLeague"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/oxanium_regular"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Sample League" />
+            <!-- MATCH LEAGUE ROUND -->
+            <TextView
+                android:id="@+id/tvMatchRound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/oxanium_regular"
+                android:textColor="@color/dark100"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                tools:text="Round 1" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
