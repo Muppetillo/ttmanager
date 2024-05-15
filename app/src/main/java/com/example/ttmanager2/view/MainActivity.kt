@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvNewEvents.setHasFixedSize(true)
         binding.rvNewEvents.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.rvNewEvents.adapter = eventAdapter
+        binding.btnNewTeam.setOnClickListener {navigateToNewTeamActivity() }
 
 
     }
@@ -63,6 +64,11 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToLeagueActivity(id: String) {
         val intent = Intent(this, LeagueActivity::class.java)
         intent.putExtra(EXTRA_ID,id)
+        startActivity(intent)
+    }
+
+    private fun navigateToNewTeamActivity() {
+        val intent = Intent(this, NewTeamActivity::class.java)
         startActivity(intent)
     }
 }

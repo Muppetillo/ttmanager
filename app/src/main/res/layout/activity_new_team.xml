@@ -6,5 +6,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.NewTeamActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Open..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-O"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Save..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-S"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Save As..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-Shift-S"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:text="X"
+                android:padding="3dip" />
+            <TextView
+                android:text="Import..."
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="X"
+                android:padding="3dip" />
+            <TextView
+                android:text="Export..."
+                android:padding="3dip" />
+            <TextView
+                android:text="Ctrl-E"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Quit"
+                android:padding="3dip" />
+        </TableRow>
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
