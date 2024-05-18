@@ -39,3 +39,5 @@ val totalTeamsList = listOf(
     Team(14, "Necronomicon BBC", "Necromantic", "NE", 1500, 5, 3, 7), //Vs mis DE
 
     )
+
+

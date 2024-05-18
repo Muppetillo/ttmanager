@@ -5,90 +5,240 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark60"
+
     tools:context=".view.NewTeamActivity">
-    <androidx.recyclerview.widget.RecyclerView
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvNewTeamName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary100"
+            app:cardCornerRadius="16dp"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/primary140"
+                    android:fontFamily="@font/oxanium_regular"
+                    android:padding="4dp"
+                    android:text="Team Name"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light80"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="6dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etNewTeamName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:backgroundTint="@color/light80"
+                        android:fontFamily="@font/oxanium_regular"
+                        android:hint="Insert team name here"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/light60"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvNewTeamFaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/primary100"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvNewTeamName">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/primary140"
+                    android:fontFamily="@font/oxanium_regular"
+                    android:padding="4dp"
+                    android:text="Team faction"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light80"
+                    android:textSize="14sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNewTeamFaction"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+        android:id="@+id/cvFactionInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="32dp"
+
+            android:layout_margin="8dp"
+        android:backgroundTint="@color/primary100"
+        app:cardCornerRadius="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/cvNewTeamFaction">
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:stretchColumns="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TableRow>
             <TextView
-                android:layout_column="1"
-                android:text="Open..."
-                android:padding="3dip" />
-            <TextView
-                android:text="Ctrl-O"
-                android:gravity="right"
-                android:padding="3dip" />
-        </TableRow>
+                android:id="@+id/tvFactionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:background="@color/primary140"
+                android:fontFamily="@font/oxanium_regular"
+                android:text="Team info"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/light80"
+                android:textSize="14sp"/>
 
-        <TableRow>
-            <TextView
-                android:layout_column="1"
-                android:text="Save..."
-                android:padding="3dip" />
-            <TextView
-                android:text="Ctrl-S"
-                android:gravity="right"
-                android:padding="3dip" />
-        </TableRow>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/primary100">
+                <TextView
+                    android:id="@+id/tvFactionRerolls"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:fontFamily="@font/oxanium_regular"
+                    android:text="Rerolls: 50k"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light80"
+                    android:textSize="12sp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tvFactionApothecary"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:fontFamily="@font/oxanium_regular"
+                    android:text="Apothecary: Yes"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light80"
+                    android:textSize="12sp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tvFactionTier"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:fontFamily="@font/oxanium_regular"
+                    android:text="Tier: 2"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light80"
+                    android:textSize="12sp"
+                    android:layout_weight="1"/>
 
-        <TableRow>
-            <TextView
-                android:layout_column="1"
-                android:text="Save As..."
-                android:padding="3dip" />
-            <TextView
-                android:text="Ctrl-Shift-S"
-                android:gravity="right"
-                android:padding="3dip" />
-        </TableRow>
+            </LinearLayout>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+        </LinearLayout>
 
-        <TableRow>
-            <TextView
-                android:text="X"
-                android:padding="3dip" />
-            <TextView
-                android:text="Import..."
-                android:padding="3dip" />
-        </TableRow>
+    </androidx.cardview.widget.CardView>
 
-        <TableRow>
-            <TextView
-                android:text="X"
-                android:padding="3dip" />
-            <TextView
-                android:text="Export..."
-                android:padding="3dip" />
-            <TextView
-                android:text="Ctrl-E"
-                android:gravity="right"
-                android:padding="3dip" />
-        </TableRow>
+            <androidx.cardview.widget.CardView
+            android:id="@+id/cvTeamPlayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+            android:backgroundTint="@color/primary100"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvFactionInfo">
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TableRow>
-            <TextView
-                android:layout_column="1"
-                android:text="Quit"
-                android:padding="3dip" />
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:background="@color/primary140"
+                    android:fontFamily="@font/oxanium_regular"
+                    android:text="Positionals info"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light80"
+                    android:textSize="14sp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTeamPlayers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCreateTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            android:backgroundTint="@color/secondary100">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="4dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Create team"
+                    android:textAllCaps="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/light80"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

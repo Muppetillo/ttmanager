@@ -12,6 +12,8 @@ import com.example.ttmanager2.R
 import com.example.ttmanager2.adapter.EventAdapter
 import com.example.ttmanager2.databinding.ActivityMainBinding
 import com.example.ttmanager2.model.leaguesList
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -70,6 +72,14 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToNewTeamActivity() {
         val intent = Intent(this, NewTeamActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun getRetrofit(): Retrofit {
+        return Retrofit
+            .Builder()
+            .baseUrl("https://192.168.1.135/bloodbowl/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 }
 
