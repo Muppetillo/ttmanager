@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        >
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="4dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="256dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="4dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="0dp"
+                        app:cardElevation="0dp" >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvMAStat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:text="MA"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="8sp"
+                                android:background="@color/light60"
+                                android:padding="2dp"/>
+
+                            <TextView
+                                android:id="@+id/tvPositionalMA"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@id/tvMAStat"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="8"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="24sp"
+                                android:padding="2dp"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="0dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginHorizontal="4dp">>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvSTStat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:text="ST"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="8sp"
+                                android:background="@color/light60"
+                                android:padding="2dp"/>
+
+                            <TextView
+                                android:id="@+id/tvPositionalST"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@id/tvSTStat"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="3"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="24sp"
+                                android:padding="2dp"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="0dp"
+                        app:cardElevation="0dp" >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvAGStat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:text="AG"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="8sp"
+                                android:background="@color/light60"
+                                android:padding="2dp"/>
+
+                            <TextView
+                                android:id="@+id/tvPositionalAG"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@id/tvAGStat"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="2+"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="24sp"
+                                android:padding="2dp"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="0dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginHorizontal="4dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvPAStat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:text="PA"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="8sp"
+                                android:background="@color/light60"
+                                android:padding="2dp"/>
+
+                            <TextView
+                                android:id="@+id/tvPositionalPA"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@id/tvPAStat"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="4+"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="24sp"
+                                android:padding="2dp"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="0dp"
+                        app:cardElevation="0dp" >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvAVStat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:text="AV"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="8sp"
+                                android:background="@color/light60"
+                                android:padding="2dp"/>
+
+                            <TextView
+                                android:id="@+id/tvPositionalAV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@id/tvAVStat"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="11+"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:textSize="24sp"
+                                android:padding="2dp"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPositionalSkills"
+                    android:layout_width="256dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="4dp"
+                    android:fontFamily="@font/oxanium_regular"
+                    tools:text="Presencia Perturbadora, Apariencia Asquerosa, Solitario (4+), Golpe Mortífero (+1), Infectado, Realmente Estúpido, Regeneración, Tentáculos" />
+
+                <LinearLayout
+                android:layout_width="192dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvSimpleSkills"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/oxanium_regular"
+                    tools:text="GASPM"
+                    android:gravity="center"
+                    />
+                    <TextView
+                        android:id="@+id/tvSecondarySkills"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="4dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/oxanium_regular"
+                        tools:text="GASPM"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:id="@+id/tvPositionalValue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="4dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/oxanium_regular"
+                        tools:text="140k"
+                        android:gravity="center"
+                        />
+
+            </LinearLayout>
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
