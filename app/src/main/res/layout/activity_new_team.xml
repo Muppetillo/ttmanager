@@ -213,13 +213,19 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:padding="4dp" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvTeamPlayersSecondary"
+                        <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="4dp" />
+                            android:scrollbars="none"
+                            android:layout_weight="1">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvTeamPlayersSecondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="4dp" />
+
+                        </HorizontalScrollView>
+
                     </LinearLayout>
 
 

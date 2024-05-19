@@ -10,17 +10,16 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ttmanager2.ApiService
 import com.example.ttmanager2.R
-import com.example.ttmanager2.adapter.EventAdapter
 import com.example.ttmanager2.adapter.FactionAdapter
-import com.example.ttmanager2.databinding.ActivityNewLeagueBinding
+import com.example.ttmanager2.adapter.PositionalMainAdapter
+import com.example.ttmanager2.adapter.PositionalSecondaryAdapter
 import com.example.ttmanager2.databinding.ActivityNewTeamBinding
 import com.example.ttmanager2.model.FactionDataResponse
 import com.example.ttmanager2.model.FactionItemResponse
-import com.example.ttmanager2.model.leaguesList
+import com.example.ttmanager2.model.PositionalDataResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.CallAdapter
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,6 +29,8 @@ class NewTeamActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewTeamBinding
     private lateinit var retrofit: Retrofit
     private lateinit var factionAdapter: FactionAdapter
+    private lateinit var positionalMainAdapter: PositionalMainAdapter
+    private lateinit var positionalSecondaryAdapter: PositionalSecondaryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,39 +51,55 @@ class NewTeamActivity : AppCompatActivity() {
 
     private fun initUI() {
         factionAdapter = FactionAdapter { factionItem -> showFactionInfo(factionItem) }
+        //rvNewTeamFaction
         binding.rvNewTeamFaction.setHasFixedSize(true)
-        binding.rvNewTeamFaction.layoutManager = LinearLayoutManager(
-            this,
-            LinearLayoutManager.HORIZONTAL, false
-        )
+        binding.rvNewTeamFaction.layoutManager =
+            LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
         binding.rvNewTeamFaction.adapter = factionAdapter
+
+        //cvCreateTeam
         binding.cvCreateTeam.setOnClickListener { navigateToTeamActivity() }
+
+        //rvTeamPlayersMain
+        positionalMainAdapter = PositionalMainAdapter()
+        binding.rvTeamPlayersMain.setHasFixedSize(true)
+        binding.rvTeamPlayersMain.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvTeamPlayersMain.adapter = positionalMainAdapter
+
+        positionalSecondaryAdapter = PositionalSecondaryAdapter()
+        binding.rvTeamPlayersSecondary.setHasFixedSize(true)
+        binding.rvTeamPlayersSecondary.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvTeamPlayersSecondary.adapter = positionalSecondaryAdapter
+
         loadTeams()
     }
 
     private fun showFactionInfo(factionItem: FactionItemResponse) {
         binding.tvFactionTitle.text = "Team info: ${factionItem.name}"
         binding.tvFactionRerolls.text = "Reroll: ${factionItem.reroll}k"
-        if (factionItem.apothecary == 1){
+        if (factionItem.apothecary == 1) {
             binding.tvFactionApothecary.text = "Apothecary: Yes"
         } else {
             binding.tvFactionApothecary.text = "Apothecary: No"
         }
         binding.tvFactionTier.text = "Tier: ${factionItem.tier}"
-        /*CoroutineScope(Dispatchers.IO).launch {
-             val myResponse: Response<PositionalDataResponse> =
-                 retrofit.create(ApiService::class.java).getPositionals(factionId)
-             if (myResponse.isSuccessful) {
-                 val response: PositionalDataResponse? = myResponse.body()
-                 if (response != null) {
-                     Log.i("Cuerpo de la consulta", response.toString())
-                     runOnUiThread {
-                         positionalAdapter.updateList(response.positionals)
-                     }
-                 }
-             }
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<PositionalDataResponse> =
+                retrofit.create(ApiService::class.java).getPositionalInfo(factionItem.id)
+            if (myResponse.isSuccessful) {
+                val response: PositionalDataResponse? = myResponse.body()
+                if (response != null) {
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        positionalMainAdapter.updateList(response.positionals)
+                        positionalSecondaryAdapter.updateList(response.positionals)
+                    }
+                }
+            }
 
-         }*/
+        }
     }
 
     private fun navigateToTeamActivity() {
@@ -93,7 +110,8 @@ class NewTeamActivity : AppCompatActivity() {
     private fun loadTeams() {
 
         CoroutineScope(Dispatchers.IO).launch {
-            val myResponse: Response<FactionDataResponse> = retrofit.create(ApiService::class.java).getFactions()
+            val myResponse: Response<FactionDataResponse> =
+                retrofit.create(ApiService::class.java).getFactions()
             if (myResponse.isSuccessful) {
                 val response: FactionDataResponse? = myResponse.body()
                 if (response != null) {
@@ -109,7 +127,8 @@ class NewTeamActivity : AppCompatActivity() {
     }
 
     private fun showFactions(factions: List<FactionItemResponse>) {
-        factionAdapter = FactionAdapter (factionList = factions){ factionId -> showFactionInfo(factionId) }
+        factionAdapter =
+            FactionAdapter(factionList = factions) { factionId -> showFactionInfo(factionId) }
         binding.rvNewTeamFaction.setHasFixedSize(true)
         binding.rvNewTeamFaction.layoutManager = LinearLayoutManager(
             this,
