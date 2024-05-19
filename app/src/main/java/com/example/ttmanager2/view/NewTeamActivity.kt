@@ -3,6 +3,7 @@ package com.example.ttmanager2.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,6 +18,7 @@ import com.example.ttmanager2.databinding.ActivityNewTeamBinding
 import com.example.ttmanager2.model.FactionDataResponse
 import com.example.ttmanager2.model.FactionItemResponse
 import com.example.ttmanager2.model.PositionalDataResponse
+import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,6 +33,7 @@ class NewTeamActivity : AppCompatActivity() {
     private lateinit var factionAdapter: FactionAdapter
     private lateinit var positionalMainAdapter: PositionalMainAdapter
     private lateinit var positionalSecondaryAdapter: PositionalSecondaryAdapter
+    private var selectedFaction: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,19 @@ class NewTeamActivity : AppCompatActivity() {
         binding.rvNewTeamFaction.adapter = factionAdapter
 
         //cvCreateTeam
-        binding.cvCreateTeam.setOnClickListener { navigateToTeamActivity() }
+        binding.cvCreateTeam.setOnClickListener {
+
+            if(binding.etNewTeamName.getText().toString() == ""){
+                Toast.makeText(this,"Introduzca un nombre para el equipo por favor", Toast.LENGTH_SHORT).show()
+            } else if (selectedFaction == null) {
+                Toast.makeText(this,"Seleccione una facción por favor", Toast.LENGTH_SHORT).show()
+            } else {
+                val teamName: String = binding.etNewTeamName.getText().toString()
+                navigateToTeamActivity(selectedFaction!!,teamName)
+            }
+        }
+
+
 
         //rvTeamPlayersMain
         positionalMainAdapter = PositionalMainAdapter()
@@ -77,6 +92,8 @@ class NewTeamActivity : AppCompatActivity() {
     }
 
     private fun showFactionInfo(factionItem: FactionItemResponse) {
+
+        selectedFaction = factionItem.id
         binding.tvFactionTitle.text = "Team info: ${factionItem.name}"
         binding.tvFactionRerolls.text = "Reroll: ${factionItem.reroll}k"
         if (factionItem.apothecary == 1) {
@@ -102,13 +119,18 @@ class NewTeamActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToTeamActivity() {
+    private fun navigateToTeamActivity(selectedFaction: String, teamName: String) {
         val intent = Intent(this, MyTeamActivity::class.java)
+        val bundle: Bundle = Bundle()
+        bundle.run{
+            putString("faction", selectedFaction)
+            putString("teamName", teamName)
+        }
+        intent.putExtra("bundle",bundle)
         startActivity(intent)
     }
 
     private fun loadTeams() {
-
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse: Response<FactionDataResponse> =
                 retrofit.create(ApiService::class.java).getFactions()
@@ -125,7 +147,7 @@ class NewTeamActivity : AppCompatActivity() {
 
         }
     }
-
+    //Borrar si vemos que no es necesario
     private fun showFactions(factions: List<FactionItemResponse>) {
         factionAdapter =
             FactionAdapter(factionList = factions) { factionId -> showFactionInfo(factionId) }

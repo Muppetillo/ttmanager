@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="0dp"
-        app:cardElevation="25dp">
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="60dp"
+                android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/bblogoicon2018_web"
                 android:layout_marginHorizontal="8dp"/>
@@ -32,9 +32,9 @@
                     android:id="@+id/tvPositionalName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Lineman"
                     android:fontFamily="@font/oxanium_medium"
-                    android:textAlignment="center"/>
+                    android:textSize="12sp"
+                    tools:text="Eagle Warrior Lineman"/>
                 <TextView
                     android:id="@+id/tvPositionalQty"
                     android:layout_width="wrap_content"

@@ -12,7 +12,12 @@ class PositionalSecondaryViewHolder (view: View): RecyclerView.ViewHolder(view) 
         binding.tvPositionalMA.text = positionalItem.ma.toString()
         binding.tvPositionalST.text = positionalItem.st.toString()
         binding.tvPositionalAG.text = positionalItem.ag.toString()+"+"
-        binding.tvPositionalPA.text = positionalItem.pa.toString()+"+"
+        if(positionalItem.pa > 0){
+            binding.tvPositionalPA.text = positionalItem.pa.toString()+"+"
+        } else {
+            binding.tvPositionalPA.text = "-"
+        }
+
         binding.tvPositionalAV.text = positionalItem.av.toString()+"+"
         binding.tvPositionalSkills.text = positionalItem.skills
         binding.tvPositionalValue.text = positionalItem.price.toString()+"k"
