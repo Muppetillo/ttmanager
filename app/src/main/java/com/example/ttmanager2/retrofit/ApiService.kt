@@ -28,4 +28,9 @@ interface ApiService {
         @Field("email") email:String,
         ): Response <UserDataResponse>
 
+    @GET("getUserName.php")
+    suspend fun getUserName(@Query("ID") ID: Int): Response<UserDataResponse>
+
+
+
 }

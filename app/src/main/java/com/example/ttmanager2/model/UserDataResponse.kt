@@ -9,4 +9,5 @@ data class UserDataResponse(
 
 data class UserItemResponse (
     @SerializedName("ID")val id: Int,
+    @SerializedName("name")val name: String
     )
