@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_weight="1"
                 >
                 <!-- TEAM 1 ICON -->
                 <ImageView
@@ -46,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center_horizontal"
                     android:fontFamily="@font/oxanium_bold"
                     android:textColor="@color/black"
                     android:textSize="12sp"
@@ -79,6 +81,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent">
                 <!-- TEAM 2 ICON -->
@@ -94,6 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center_horizontal"
                     android:fontFamily="@font/oxanium_bold"
                     android:textColor="@color/black"
                     android:textSize="12sp"

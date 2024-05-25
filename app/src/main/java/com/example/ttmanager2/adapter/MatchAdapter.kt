@@ -26,7 +26,7 @@ class MatchAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
         return MatchViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_next_match, parent, false)
         )
     }
 

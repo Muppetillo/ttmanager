@@ -52,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent">
                 <!-- TEAM 1 ICON -->
                 <ImageView
@@ -66,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center_horizontal"
                     android:fontFamily="@font/oxanium_bold"
                     android:text="SampleTeam"
                     android:textColor="@color/black"
@@ -90,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="4dp"
+                android:padding="2dp"
                 android:fontFamily="@font/oxanium_semibold"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -111,6 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="4dp"
+                android:padding="2dp"
                 android:fontFamily="@font/oxanium_semibold"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -121,6 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent">
                 <!-- TEAM 2 ICON-->
                 <ImageView
@@ -135,6 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center_horizontal"
                     android:fontFamily="@font/oxanium_bold"
                     android:text="SampleTeam"
                     android:textColor="@color/black"

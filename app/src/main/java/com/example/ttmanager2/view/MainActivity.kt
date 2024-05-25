@@ -108,23 +108,29 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initResultsAdapter() {
-        resultAdapter = ResultAdapter(resultList)
+        resultAdapter = ResultAdapter(resultList) {matchID -> navigateToMatchActivity(matchID)}
         binding.rvLatetsResults.setHasFixedSize(true)
         binding.rvLatetsResults.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.rvLatetsResults.adapter = resultAdapter
     }
 
     private fun initMatchAdapter() {
-        matchAdapter = MatchAdapter(matchList)
+        matchAdapter = MatchAdapter(matchList) {matchID -> navigateToMatchActivity(matchID)}
         binding.rvNextMatches.setHasFixedSize(true)
         binding.rvNextMatches.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.rvNextMatches.adapter = matchAdapter
     }
 
+    private fun navigateToMatchActivity(matchID: String) {
+        val intent = Intent(this, MatchActivity::class.java)
+        intent.putExtra("matchID",matchID )
+        startActivity(intent)
+    }
+
 
     private fun initEventAdapter() {
 
-        eventAdapter = EventAdapter(leaguesList){ eventAdapterId -> navigateToLeagueActivity(eventAdapterId)}
+        eventAdapter = EventAdapter(leaguesList){ eventId -> navigateToLeagueActivity(eventId)}
         binding.rvNewEvents.setHasFixedSize(true)
         binding.rvNewEvents.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.rvNewEvents.adapter = eventAdapter
