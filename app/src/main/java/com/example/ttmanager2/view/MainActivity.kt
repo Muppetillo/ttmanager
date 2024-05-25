@@ -186,7 +186,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToTeamActivity(teamID: String) {
-
+        val id = teamID.toInt()
+        val intent = Intent(this, MyTeamActivity::class.java)
+        intent.putExtra("teamID",id )
+        startActivity(intent)
     }
 }
 
