@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <application
 
+    <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,9 +15,21 @@
         android:theme="@style/Theme.TTManager2"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.NewLeagueActivity"
+            android:name=".view.RegisterActivity"
             android:exported="false" />
-        <!-- tools:targetApi="31" -->
+        <activity
+            android:name=".view.LoginActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".view.NewLeagueActivity"
+            android:exported="false" /> <!-- tools:targetApi="31" -->
         <activity
             android:name=".view.MatchActivity"
             android:exported="false" />
@@ -32,13 +44,8 @@
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

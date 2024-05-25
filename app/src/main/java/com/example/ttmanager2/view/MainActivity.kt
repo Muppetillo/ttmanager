@@ -17,9 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
-    companion object {
-        const val EXTRA_ID = "extra_id"
-    }
+
 
 
     private lateinit var binding: ActivityMainBinding
@@ -67,7 +65,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToLeagueActivity(id: String) {
         val intent = Intent(this, LeagueActivity::class.java)
-        intent.putExtra(EXTRA_ID,id)
         startActivity(intent)
     }
 
@@ -76,12 +73,5 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun getRetrofit(): Retrofit {
-        return Retrofit
-            .Builder()
-            .baseUrl("https://192.168.1.135/bloodbowl/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
 }
 

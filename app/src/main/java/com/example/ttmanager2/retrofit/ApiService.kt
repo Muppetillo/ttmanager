@@ -1,9 +1,11 @@
-package com.example.ttmanager2
+package com.example.ttmanager2.retrofit
 
 import com.example.ttmanager2.model.FactionDataResponse
 import com.example.ttmanager2.model.PositionalDataResponse
+import com.example.ttmanager2.model.UserDataResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
@@ -12,4 +14,11 @@ interface ApiService {
 
     @GET("getPositionalInfo.php")
     suspend fun getPositionalInfo(@Query("faction_Id") factionId: String): Response<PositionalDataResponse>
+
+    @GET("getUserID.php")
+    suspend fun getUserID(@Query("userName") userName: String,@Query("pwd") pwd: String,): Response<UserDataResponse>
+
+    @POST("insertNewUser.php")
+    suspend fun insertNewUser()
+
 }

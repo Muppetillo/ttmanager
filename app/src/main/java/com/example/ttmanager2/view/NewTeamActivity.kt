@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ttmanager2.ApiService
+import com.example.ttmanager2.retrofit.ApiService
 import com.example.ttmanager2.R
 import com.example.ttmanager2.adapter.FactionAdapter
 import com.example.ttmanager2.adapter.PositionalMainAdapter
@@ -18,7 +18,7 @@ import com.example.ttmanager2.databinding.ActivityNewTeamBinding
 import com.example.ttmanager2.model.FactionDataResponse
 import com.example.ttmanager2.model.FactionItemResponse
 import com.example.ttmanager2.model.PositionalDataResponse
-import com.google.android.material.internal.ContextUtils.getActivity
+import com.example.ttmanager2.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NewTeamActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewTeamBinding
-    private lateinit var retrofit: Retrofit
+    private lateinit var retrofit: RetrofitClient
     private lateinit var factionAdapter: FactionAdapter
     private lateinit var positionalMainAdapter: PositionalMainAdapter
     private lateinit var positionalSecondaryAdapter: PositionalSecondaryAdapter
@@ -46,7 +46,7 @@ class NewTeamActivity : AppCompatActivity() {
             insets
         }
 
-        retrofit = getRetrofit()
+        retrofit = RetrofitClient()
         initUI()
 
 
@@ -64,15 +64,15 @@ class NewTeamActivity : AppCompatActivity() {
         binding.cvCreateTeam.setOnClickListener {
 
             if(binding.etNewTeamName.getText().toString() == ""){
-                Toast.makeText(this,"Introduzca un nombre para el equipo por favor", Toast.LENGTH_SHORT).show()
+                showMessage("Please insert a name for your team")
+
             } else if (selectedFaction == null) {
-                Toast.makeText(this,"Seleccione una facción por favor", Toast.LENGTH_SHORT).show()
+                showMessage("Please select a faction for your team")
             } else {
                 val teamName: String = binding.etNewTeamName.getText().toString()
                 navigateToTeamActivity(selectedFaction!!,teamName)
             }
         }
-
 
 
         //rvTeamPlayersMain
@@ -91,8 +91,11 @@ class NewTeamActivity : AppCompatActivity() {
         loadTeams()
     }
 
-    private fun showFactionInfo(factionItem: FactionItemResponse) {
+    private fun showMessage(message: String) {
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
+    }
 
+    private fun showFactionInfo(factionItem: FactionItemResponse) {
         selectedFaction = factionItem.id
         binding.tvFactionTitle.text = "Team info: ${factionItem.name}"
         binding.tvFactionRerolls.text = "Reroll: ${factionItem.reroll}k"
@@ -104,7 +107,7 @@ class NewTeamActivity : AppCompatActivity() {
         binding.tvFactionTier.text = "Tier: ${factionItem.tier}"
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse: Response<PositionalDataResponse> =
-                retrofit.create(ApiService::class.java).getPositionalInfo(factionItem.id)
+                retrofit.apiCall.getPositionalInfo(factionItem.id)
             if (myResponse.isSuccessful) {
                 val response: PositionalDataResponse? = myResponse.body()
                 if (response != null) {
@@ -120,6 +123,7 @@ class NewTeamActivity : AppCompatActivity() {
     }
 
     private fun navigateToTeamActivity(selectedFaction: String, teamName: String) {
+        insertTeam(selectedFaction,teamName)
         val intent = Intent(this, MyTeamActivity::class.java)
         val bundle: Bundle = Bundle()
         bundle.run{
@@ -130,10 +134,14 @@ class NewTeamActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun insertTeam(selectedFaction: String, teamName: String) {
+        //TO DO
+    }
+
     private fun loadTeams() {
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse: Response<FactionDataResponse> =
-                retrofit.create(ApiService::class.java).getFactions()
+                retrofit.apiCall.getFactions()
             if (myResponse.isSuccessful) {
                 val response: FactionDataResponse? = myResponse.body()
                 if (response != null) {
@@ -160,13 +168,6 @@ class NewTeamActivity : AppCompatActivity() {
     }
 
 
-    private fun getRetrofit(): Retrofit {
-        return Retrofit
-            .Builder()
-            .baseUrl("http://192.168.1.135/bloodbowl/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
 }
 
 
