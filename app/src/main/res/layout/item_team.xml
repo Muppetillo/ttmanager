@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    app:cardCornerRadius="28dp">
+    app:cardCornerRadius="28dp"
+    android:layout_marginVertical="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +67,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="12dp">
+            android:gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1">
 
 
             <androidx.cardview.widget.CardView
@@ -101,7 +104,8 @@
             android:gravity="center"
             android:textSize="14dp"
             android:textStyle="bold"
-            tools:text="3W - 2D - 15L" />
+            tools:text="3W - 2D - 15L"
+            />
 
     </LinearLayout>
 

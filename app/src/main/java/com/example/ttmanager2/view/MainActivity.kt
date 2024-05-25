@@ -13,21 +13,28 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ttmanager2.R
 import com.example.ttmanager2.adapter.EventAdapter
+import com.example.ttmanager2.adapter.MatchAdapter
+import com.example.ttmanager2.adapter.ResultAdapter
+import com.example.ttmanager2.adapter.TeamAdapter
 import com.example.ttmanager2.databinding.ActivityMainBinding
+import com.example.ttmanager2.model.TeamDataResponse
 import com.example.ttmanager2.model.UserDataResponse
 import com.example.ttmanager2.model.leaguesList
+import com.example.ttmanager2.model.matchList
+import com.example.ttmanager2.model.resultList
 import com.example.ttmanager2.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var eventAdapter: EventAdapter
+    private lateinit var matchAdapter: MatchAdapter
+    private lateinit var resultAdapter: ResultAdapter
+    private lateinit var teamsAdapter: TeamAdapter
     private lateinit var retrofit: RetrofitClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +53,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun InitUI() {
-        val userId = intent.getStringExtra("idString").toString()
-        getUserName(userId)
+        val userID = intent.getStringExtra("idString").toString()
+        getUserName(userID)
 
 
 
@@ -59,15 +66,72 @@ class MainActivity : AppCompatActivity() {
 
             }
         )
+        initEventAdapter()
+        initMatchAdapter()
+        initResultsAdapter()
+        initTeamAdapter()
+        loadData(userID)
+
+        binding.btnNewTeam.setOnClickListener {navigateToNewTeamActivity(userID) }
+
+
+    }
+
+    private fun loadData(userID: String) {
+        //loadResults()
+        //loadMatches()
+        loadTeams(userID.toInt())
+    }
+
+    private fun loadTeams(userID: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<TeamDataResponse> =
+                retrofit.apiCall.getTeamsByUserID(userID)
+            if (myResponse.isSuccessful) {
+                val response: TeamDataResponse? = myResponse.body()
+                if (response!!.response == "100") {
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        teamsAdapter.updateList(response.teams)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initTeamAdapter() {
+        teamsAdapter = TeamAdapter{teamID -> navigateToTeamActivity(teamID)}
+        binding.rvMyTeams.setHasFixedSize(true)
+        binding.rvMyTeams.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        binding.rvMyTeams.adapter = teamsAdapter
+    }
+
+
+    private fun initResultsAdapter() {
+        resultAdapter = ResultAdapter(resultList)
+        binding.rvLatetsResults.setHasFixedSize(true)
+        binding.rvLatetsResults.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        binding.rvLatetsResults.adapter = resultAdapter
+    }
+
+    private fun initMatchAdapter() {
+        matchAdapter = MatchAdapter(matchList)
+        binding.rvNextMatches.setHasFixedSize(true)
+        binding.rvNextMatches.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        binding.rvNextMatches.adapter = matchAdapter
+    }
+
+
+    private fun initEventAdapter() {
 
         eventAdapter = EventAdapter(leaguesList){ eventAdapterId -> navigateToLeagueActivity(eventAdapterId)}
         binding.rvNewEvents.setHasFixedSize(true)
         binding.rvNewEvents.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.rvNewEvents.adapter = eventAdapter
-        binding.btnNewTeam.setOnClickListener {navigateToNewTeamActivity() }
-
 
     }
+
+
 
     private fun getUserName(userId: String) {
         val id = userId.toInt()
@@ -105,8 +169,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navigateToNewTeamActivity() {
+    private fun navigateToNewTeamActivity(userId: String) {
         val intent = Intent(this, NewTeamActivity::class.java)
+        intent.putExtra("userId",userId )
         startActivity(intent)
     }
 
@@ -114,5 +179,8 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun navigateToTeamActivity(teamID: String) {
+
+    }
 }
 

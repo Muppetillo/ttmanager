@@ -58,12 +58,12 @@ class LoginActivity : AppCompatActivity() {
             if (userName == "" || pwd == "") {
                 showMessage("Please, fill the formulary with your credentials")
             } else {
-                callRetrofit(userName, pwd)
+                loginUser(userName, pwd)
             }
         }
     }
 
-    private fun callRetrofit(userName: String, pwd: String) {
+    private fun loginUser(userName: String, pwd: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse: Response<UserDataResponse> =
                 retrofit.apiCall.getUserID(userName, pwd)

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ttmanager2.retrofit.ApiService
 import com.example.ttmanager2.R
 import com.example.ttmanager2.adapter.FactionAdapter
 import com.example.ttmanager2.adapter.PositionalMainAdapter
@@ -18,13 +17,12 @@ import com.example.ttmanager2.databinding.ActivityNewTeamBinding
 import com.example.ttmanager2.model.FactionDataResponse
 import com.example.ttmanager2.model.FactionItemResponse
 import com.example.ttmanager2.model.PositionalDataResponse
+import com.example.ttmanager2.model.TeamDataResponse
 import com.example.ttmanager2.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class NewTeamActivity : AppCompatActivity() {
 
@@ -53,13 +51,15 @@ class NewTeamActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        factionAdapter = FactionAdapter { factionItem -> showFactionInfo(factionItem) }
-        //rvNewTeamFaction
-        binding.rvNewTeamFaction.setHasFixedSize(true)
-        binding.rvNewTeamFaction.layoutManager =
-            LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
-        binding.rvNewTeamFaction.adapter = factionAdapter
 
+        initFactionAdapter()
+        initPositionalMainAdapter()
+        initPositionalSecondaryAdapter()
+        initCreateTeamBtn()
+        loadTeams()
+    }
+
+    private fun initCreateTeamBtn() {
         //cvCreateTeam
         binding.cvCreateTeam.setOnClickListener {
 
@@ -70,25 +70,34 @@ class NewTeamActivity : AppCompatActivity() {
                 showMessage("Please select a faction for your team")
             } else {
                 val teamName: String = binding.etNewTeamName.getText().toString()
-                navigateToTeamActivity(selectedFaction!!,teamName)
+                insertTeam(selectedFaction!!,teamName)
             }
         }
+    }
 
+    private fun initPositionalSecondaryAdapter() {
+        positionalSecondaryAdapter = PositionalSecondaryAdapter()
+        binding.rvTeamPlayersSecondary.setHasFixedSize(true)
+        binding.rvTeamPlayersSecondary.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvTeamPlayersSecondary.adapter = positionalSecondaryAdapter
+    }
 
+    private fun initPositionalMainAdapter() {
         //rvTeamPlayersMain
         positionalMainAdapter = PositionalMainAdapter()
         binding.rvTeamPlayersMain.setHasFixedSize(true)
         binding.rvTeamPlayersMain.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvTeamPlayersMain.adapter = positionalMainAdapter
+    }
 
-        positionalSecondaryAdapter = PositionalSecondaryAdapter()
-        binding.rvTeamPlayersSecondary.setHasFixedSize(true)
-        binding.rvTeamPlayersSecondary.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.rvTeamPlayersSecondary.adapter = positionalSecondaryAdapter
-
-        loadTeams()
+    private fun initFactionAdapter() {
+        factionAdapter = FactionAdapter { factionItem -> showFactionInfo(factionItem) }
+        binding.rvNewTeamFaction.setHasFixedSize(true)
+        binding.rvNewTeamFaction.layoutManager =
+            LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
+        binding.rvNewTeamFaction.adapter = factionAdapter
     }
 
     private fun showMessage(message: String) {
@@ -122,20 +131,56 @@ class NewTeamActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToTeamActivity(selectedFaction: String, teamName: String) {
-        insertTeam(selectedFaction,teamName)
+    private fun navigateToTeamActivity(id: Int) {
+
         val intent = Intent(this, MyTeamActivity::class.java)
-        val bundle: Bundle = Bundle()
-        bundle.run{
-            putString("faction", selectedFaction)
-            putString("teamName", teamName)
-        }
-        intent.putExtra("bundle",bundle)
+
+        intent.putExtra("teamID",id )
         startActivity(intent)
     }
 
     private fun insertTeam(selectedFaction: String, teamName: String) {
-        //TO DO
+        val userId = intent.getStringExtra("userId").toString().toInt()
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<TeamDataResponse> =
+                retrofit.apiCall.insertNewTeam(teamName, selectedFaction,userId)
+            if (myResponse.isSuccessful) {
+                val response: TeamDataResponse? = myResponse.body()
+                if (response!!.response == "100") {
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        getTeam(selectedFaction, teamName, userId)
+                    }
+                } else {
+                    runOnUiThread {
+                        showMessage("Wrong User / Password, please try again")
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    private fun getTeam(selectedFaction: String, teamName: String, userId: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<TeamDataResponse> =
+                retrofit.apiCall.getTeamInfo(teamName, selectedFaction,userId)
+            if (myResponse.isSuccessful) {
+                val response: TeamDataResponse? = myResponse.body()
+                if (response!!.response == "100") {
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        navigateToTeamActivity(response.teams[0].id)
+                    }
+                } else {
+                    runOnUiThread {
+                        showMessage("Wrong User / Password, please try again")
+                    }
+
+                }
+            }
+        }
     }
 
     private fun loadTeams() {
@@ -155,18 +200,6 @@ class NewTeamActivity : AppCompatActivity() {
 
         }
     }
-    //Borrar si vemos que no es necesario
-    private fun showFactions(factions: List<FactionItemResponse>) {
-        factionAdapter =
-            FactionAdapter(factionList = factions) { factionId -> showFactionInfo(factionId) }
-        binding.rvNewTeamFaction.setHasFixedSize(true)
-        binding.rvNewTeamFaction.layoutManager = LinearLayoutManager(
-            this,
-            LinearLayoutManager.HORIZONTAL, false
-        )
-        binding.rvNewTeamFaction.adapter = factionAdapter
-    }
-
 
 }
 
