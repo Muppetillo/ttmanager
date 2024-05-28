@@ -8,17 +8,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.ttmanager2.retrofit.ApiService
 import com.example.ttmanager2.R
 import com.example.ttmanager2.databinding.ActivityLoginBinding
 import com.example.ttmanager2.model.UserDataResponse
+import com.example.ttmanager2.model.UserItemResponse
 import com.example.ttmanager2.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
@@ -72,7 +70,8 @@ class LoginActivity : AppCompatActivity() {
                 if (response!!.response == "100") {
                     Log.i("Cuerpo de la consulta", response.toString())
                     runOnUiThread {
-                        navigateToMainActivity(response.user[0].id)
+
+                        navigateToMainActivity(response.user[0],userName)
                     }
                 } else {
                     runOnUiThread {
@@ -85,8 +84,9 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun navigateToMainActivity(id: Int) {
-        val idString = id.toString()
+    private fun navigateToMainActivity(user: UserItemResponse, userName: String) {
+        showMessage("Welcome back $userName")
+        val idString = user.id.toString()
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("idString",idString)
         startActivity(intent)

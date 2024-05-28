@@ -127,7 +127,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
     private fun initEventAdapter() {
 
         eventAdapter = EventAdapter(leaguesList){ eventId -> navigateToLeagueActivity(eventId)}
@@ -136,8 +135,6 @@ class MainActivity : AppCompatActivity() {
         binding.rvNewEvents.adapter = eventAdapter
 
     }
-
-
 
     private fun getUserName(userId: String) {
         val id = userId.toInt()

@@ -53,25 +53,35 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun insertNewUser(userName: String, pwd: String, email: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val myResponse: Response<UserDataResponse> =
-                retrofit.apiCall.insertNewUser(userName, pwd, email)
-            if (myResponse.isSuccessful) {
-                val response: UserDataResponse? = myResponse.body()
-                if (response!!.response == "100") {
-                    Log.i("Cuerpo de la consulta", response.toString())
-                    runOnUiThread {
-                        navigateToLoginActivity()
-                    }
-                } else {
-                    runOnUiThread {
-                        showMessage("Wrong User / Password, please try again")
-                    }
+        if(userName==""){
+            showMessage("A user name is needed to make a new sign up, please insert one")
+        } else if (pwd == ""){
+            showMessage("A password is needed to make a new sign up, please insert one")
+        } else if (email == "") {
+            showMessage("An email is needed to make a new sign up, please insert one")
+        } else {
+            CoroutineScope(Dispatchers.IO).launch {
+                val myResponse: Response<UserDataResponse> =
+                    retrofit.apiCall.insertNewUser(userName, pwd, email)
+                if (myResponse.isSuccessful) {
+                    val response: UserDataResponse? = myResponse.body()
+                    if (response!!.response == "100") {
+                        Log.i("Cuerpo de la consulta", response.toString())
+                        runOnUiThread {
+                            showMessage("Your user was registered successfully")
+                            navigateToLoginActivity()
+                        }
+                    } else {
+                        runOnUiThread {
+                            showMessage("Wrong User / Password, please try again")
+                        }
 
+                    }
                 }
-            }
 
+            }
         }
+
     }
 
     private fun navigateToLoginActivity() {
