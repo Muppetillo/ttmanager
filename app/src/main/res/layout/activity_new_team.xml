@@ -10,6 +10,58 @@
     tools:context=".view.NewTeamActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary140"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/ivTeamLogo"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/icn_teams_filled_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvMyTeamName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:fontFamily="@font/oxanium_semibold"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/ivTeamLogo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="New team creation" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/primary140"
+                android:src="@drawable/icn_home_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cvNewTeamName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +69,7 @@
         android:backgroundTint="@color/primary100"
         app:cardCornerRadius="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/cvHeader">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/primary140"
-                android:fontFamily="@font/oxanium_regular"
+                android:fontFamily="@font/oxanium_semibold"
                 android:padding="4dp"
                 android:text="Team Name"
                 android:textAlignment="center"
@@ -80,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primary140"
-                android:fontFamily="@font/oxanium_regular"
+                android:fontFamily="@font/oxanium_semibold"
                 android:padding="4dp"
                 android:text="Team faction"
                 android:textAlignment="center"
@@ -120,7 +172,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primary140"
-                android:fontFamily="@font/oxanium_regular"
+                android:fontFamily="@font/oxanium_semibold"
                 android:padding="4dp"
                 android:text="Team info"
                 android:textAlignment="center"
@@ -198,7 +250,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primary140"
-                android:fontFamily="@font/oxanium_regular"
+                android:fontFamily="@font/oxanium_semibold"
                 android:padding="4dp"
                 android:text="Positionals info"
                 android:textAlignment="center"

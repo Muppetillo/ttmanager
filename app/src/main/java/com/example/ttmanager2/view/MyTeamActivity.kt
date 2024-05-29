@@ -66,7 +66,7 @@ class MyTeamActivity : AppCompatActivity() {
     }
 
     private fun initUI(team: TeamItemResponse) {
-        binding.tvMyTeamInfo.text = "${team.id}"
+        //binding.tvMyTeamInfo.text = "${team.id}"
     }
 
     private fun showMessage(message: String) {

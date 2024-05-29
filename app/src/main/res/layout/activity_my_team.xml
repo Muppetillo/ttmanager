@@ -5,15 +5,776 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark60"
     tools:context=".view.MyTeamActivity">
 
-    <TextView
-        android:id="@+id/tvMyTeamInfo"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary140"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/ivTeamLogo"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/bblogoicon2018_web"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvMyTeamName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:fontFamily="@font/oxanium_semibold"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/ivTeamLogo"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="TeamName Sample" />
+
+            <TextView
+                android:id="@+id/tvMyTeamFaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:fontFamily="@font/oxanium_regular"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/ivTeamLogo"
+                app:layout_constraintTop_toBottomOf="@id/tvMyTeamName"
+                tools:text="Dark Elf" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/primary140"
+                android:src="@drawable/icn_home_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:backgroundTint="@color/dark80"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintStart_toEndOf="@id/tvMyTeamFaction"
+                app:layout_constraintTop_toBottomOf="@id/tvMyTeamName">
+
+                <TextView
+                    android:id="@+id/tvMyTeamValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:fontFamily="@font/oxanium_regular"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/ivTeamLogo"
+                    app:layout_constraintTop_toBottomOf="@id/tvMyTeamName"
+                    tools:text="1256" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/cvHeader">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvRoster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/primary140"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--Header-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@color/primary140"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCardHeaderR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_marginVertical="2dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/oxanium_semibold"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="Roster" />
+
+                        <ImageView
+                            android:id="@+id/ivEditRoster"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/icnedit"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </LinearLayout>
+                    <!--Body-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <!--LeftSide-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <!--HeaderLeftSide-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/primary120"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="4dp"
+                                    android:layout_marginVertical="2dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/oxanium_semibold"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="Nº" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="4dp"
+                                    android:layout_marginVertical="2dp"
+                                    android:layout_weight="2"
+                                    android:fontFamily="@font/oxanium_semibold"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="4dp"
+                                    android:layout_marginVertical="2dp"
+                                    android:layout_weight="3"
+                                    android:fontFamily="@font/oxanium_semibold"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="Name" />
+
+
+                            </LinearLayout>
+                            <!--BodyLeftSide-->
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvTeamPlayersMain"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp" />
+                        </LinearLayout>
+                        <!--RightSide-->
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:clipToPadding="false"
+                            android:fillViewport="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <!--Header-->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/primary120"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="256dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="Characteristics" />
+
+                                    <TextView
+                                        android:layout_width="256dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="5"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="Skills and traits" />
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="MNG"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="SPP"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="32dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="TD"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="32dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="CAS"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="32dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="COM"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="32dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="Int"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="32dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="MVP"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="4dp"
+                                        android:layout_marginVertical="2dp"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/oxanium_semibold"
+                                        android:text="Value"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                                </LinearLayout>
+                                <!--Body-->
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rvTeamPlayersSecondary"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="4dp" />
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvTecnichalStaff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/primary140"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvRoster">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--Header-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@color/primary140"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCardHeaderTS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_marginVertical="2dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/oxanium_semibold"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="Technical Staff" />
+
+                        <ImageView
+                            android:id="@+id/ivEditTS"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/icnedit"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </LinearLayout>
+                    <!--Body-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Treasury:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvTreasury"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                tools:text="1000k" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Rerolls:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvRerolls"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                tools:text="3" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Dedicated fans:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvDedicatedFans"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                tools:text="0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Assistant Coaches:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvAssistantCoaches"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                tools:text="0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Cheerleaders:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvCheerleaders"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                tools:text="0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Apothecary:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvApothecary"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                tools:text="Yes" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Special rules:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvSpecialRules"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                tools:text="Elven Kingdon League" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/oxanium_semibold"
+                                android:text="Rule set:"
+                                android:textAllCaps="true" />
+
+                            <TextView
+                                android:id="@+id/tvRuleSet"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/oxanium_regular"
+                                android:text="BB 2020" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvLatestResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/primary140"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvTecnichalStaff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--Header-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@color/primary140"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvHeaderCardLR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_marginVertical="2dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/oxanium_semibold"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text= "Latest Results" />
+
+                    </LinearLayout>
+                    <!--Body-->
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clipToPadding="false"
+                        android:fillViewport="true">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvLatetsResults"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp" />
+
+                    </HorizontalScrollView>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvNextMatches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/primary140"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvLatestResults">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--Header-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@color/primary140"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvHeaderCardNM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_marginVertical="2dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/oxanium_semibold"
+                            android:text="Next Matches"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </LinearLayout>
+                    <!--Body-->
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clipToPadding="false"
+                        android:fillViewport="true">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvNextMatches"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp" />
+
+                    </HorizontalScrollView>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
