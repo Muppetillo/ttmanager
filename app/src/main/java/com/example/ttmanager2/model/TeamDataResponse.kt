@@ -12,6 +12,7 @@ data class TeamItemResponse (
     @SerializedName("faction") val faction: String,
     @SerializedName("ID")val id: Int,
     @SerializedName("name")val name: String,
+    @SerializedName("faction_Id") val factionId: String,
     @SerializedName("rerolls")val rerolls: Int,
     @SerializedName("hasApothecary")val hasApothecary: Int,
     @SerializedName("teamValue")val teamValue: Int,

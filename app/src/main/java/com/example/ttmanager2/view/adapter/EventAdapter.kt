@@ -1,11 +1,11 @@
-package com.example.ttmanager2.adapter
+package com.example.ttmanager2.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ttmanager2.R
 import com.example.ttmanager2.model.League
-import com.example.ttmanager2.viewHolder.EventViewHolder
+import com.example.ttmanager2.view.viewHolder.EventViewHolder
 
 class EventAdapter(
     private var leaguesList: List<League> = emptyList(),

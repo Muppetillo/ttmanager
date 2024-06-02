@@ -1,11 +1,11 @@
-package com.example.ttmanager2.adapter
+package com.example.ttmanager2.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ttmanager2.R
 import com.example.ttmanager2.model.FactionItemResponse
-import com.example.ttmanager2.viewHolder.FactionViewHolder
+import com.example.ttmanager2.view.viewHolder.FactionViewHolder
 
 class FactionAdapter (
     private var factionList: List<FactionItemResponse> = emptyList(),

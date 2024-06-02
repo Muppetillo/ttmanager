@@ -1,12 +1,12 @@
-package com.example.ttmanager2.adapter
+package com.example.ttmanager2.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ttmanager2.R
 import com.example.ttmanager2.model.PositionalItemResponse
-import com.example.ttmanager2.viewHolder.PositionalMainViewHolder
-import com.example.ttmanager2.viewHolder.PositionalSecondaryViewHolder
+import com.example.ttmanager2.view.viewHolder.PositionalMainViewHolder
+import com.example.ttmanager2.view.viewHolder.PositionalSecondaryViewHolder
 
 class PositionalSecondaryAdapter (
     private var positionalList: List<PositionalItemResponse> = emptyList(),

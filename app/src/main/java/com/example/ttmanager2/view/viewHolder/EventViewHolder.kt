@@ -1,4 +1,4 @@
-package com.example.ttmanager2.viewHolder
+package com.example.ttmanager2.view.viewHolder
 
 import android.annotation.SuppressLint
 import android.view.View
@@ -14,7 +14,7 @@ class EventViewHolder (view: View): RecyclerView.ViewHolder(view) {
         binding.tvEventName.text = eventResponse.name
         binding.tvEventPlace.text = "${eventResponse.city}, ${eventResponse.country}"
         binding.root.setOnClickListener{
-            navigateToLeagueActivity(eventResponse.ID.toString())
+            //navigateToLeagueActivity(eventResponse.ID.toString())
         }
     }
 

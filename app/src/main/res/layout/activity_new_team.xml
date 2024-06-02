@@ -47,6 +47,7 @@
                 android:text="New team creation" />
 
             <ImageButton
+                android:id="@+id/btnBackHome"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="@color/primary140"

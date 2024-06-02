@@ -1,12 +1,11 @@
-package com.example.ttmanager2.adapter
+package com.example.ttmanager2.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ttmanager2.R
-import com.example.ttmanager2.viewHolder.MatchViewHolder
 import com.example.ttmanager2.model.Result
-import com.example.ttmanager2.viewHolderw.ResultViewHolder
+import com.example.ttmanager2.view.viewHolder.ResultViewHolder
 
 class ResultAdapter  (
     private var resultList: List<Result> = emptyList(),

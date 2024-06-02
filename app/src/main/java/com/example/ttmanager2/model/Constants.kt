@@ -1,4 +1,4 @@
-package com.example.ttmanager2
+package com.example.ttmanager2.model
 
 object Constants {
     const val HOME_URL = "http://192.168.1.135/bloodbowl/"

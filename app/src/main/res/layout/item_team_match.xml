@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+app:cardCornerRadius="8dp">
+
+<ImageView
+    android:id="@+id/ivOtherTeamImg"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:src="@drawable/human"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginHorizontal="8dp"/>
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_marginVertical="2dp"
+    android:layout_weight="3"
+    android:layout_marginHorizontal="4dp"
+    app:layout_constraintEnd_toStartOf="@id/ivOtherTeamImg"
+    >
+
+    <TextView
+        android:id="@+id/tvOtherTeamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/oxanium_medium"
+        android:textAlignment="textEnd"
+        android:textSize="12sp"
+        tools:text="Eagle Warrior Lineman"/>
+    <TextView
+        android:id="@+id/tvOtherTeamFaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Human"
+        android:textAlignment="textEnd"
+        android:fontFamily="@font/oxanium_light"
+        android:textSize="12sp"/>
+
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_marginVertical="2dp"
+    android:layout_weight="3"
+    android:layout_marginHorizontal="4dp"
+    app:layout_constraintStart_toStartOf="parent"
+    >
+
+    <TextView
+        android:id="@+id/tvTeamEventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/oxanium_medium"
+        android:textAlignment="textStart"
+        android:textSize="12sp"
+        tools:text="Eagle Warrior Lineman"/>
+    <TextView
+        android:id="@+id/tvTeamRound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Human"
+        android:textAlignment="textStart"
+        android:fontFamily="@font/oxanium_light"
+        android:textSize="12sp"/>
+
+
+</LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

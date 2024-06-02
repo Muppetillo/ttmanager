@@ -1,11 +1,13 @@
-package com.example.ttmanager2.viewHolderw
+package com.example.ttmanager2.view.viewHolder
 
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ttmanager2.R
 import com.example.ttmanager2.databinding.ItemLatestResultsBinding
 import com.example.ttmanager2.model.Match
 import com.example.ttmanager2.model.Result
+import com.example.ttmanager2.view.MainActivity
 
 class ResultViewHolder  (view: View): RecyclerView.ViewHolder(view) {
     private val binding = ItemLatestResultsBinding.bind(view)
@@ -35,7 +37,7 @@ class ResultViewHolder  (view: View): RecyclerView.ViewHolder(view) {
         }
 
         binding.root.setOnClickListener{
-            navigateToMatchActivity(resultResponse.ID.toString())
+            //navigateToMatchActivity(resultResponse.ID.toString())
         }
     }
 

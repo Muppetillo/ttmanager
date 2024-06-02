@@ -12,11 +12,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ttmanager2.R
-import com.example.ttmanager2.adapter.EventAdapter
-import com.example.ttmanager2.adapter.MatchAdapter
-import com.example.ttmanager2.adapter.ResultAdapter
-import com.example.ttmanager2.adapter.TeamAdapter
 import com.example.ttmanager2.databinding.ActivityMainBinding
+import com.example.ttmanager2.view.adapter.EventAdapter
+import com.example.ttmanager2.view.adapter.MatchAdapter
+import com.example.ttmanager2.view.adapter.ResultAdapter
+import com.example.ttmanager2.view.adapter.TeamAdapter
 import com.example.ttmanager2.model.TeamDataResponse
 import com.example.ttmanager2.model.UserDataResponse
 import com.example.ttmanager2.model.leaguesList
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var resultAdapter: ResultAdapter
     private lateinit var teamsAdapter: TeamAdapter
     private lateinit var retrofit: RetrofitClient
+    private var userID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -53,10 +54,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun InitUI() {
-        val userID = intent.getStringExtra("idString").toString()
+        userID = intent.getStringExtra("idString")!!.toInt()
+        Log.i("ID User",userID.toString())
         getUserName(userID)
-
-
 
         binding.searchView.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener{
@@ -77,10 +77,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun loadData(userID: String) {
+    private fun loadData(userID: Int) {
         //loadResults()
         //loadMatches()
-        loadTeams(userID.toInt())
+        loadTeams(userID)
     }
 
     private fun loadTeams(userID: Int) {
@@ -106,7 +106,6 @@ class MainActivity : AppCompatActivity() {
         binding.rvMyTeams.adapter = teamsAdapter
     }
 
-
     private fun initResultsAdapter() {
         resultAdapter = ResultAdapter(resultList) {matchID -> navigateToMatchActivity(matchID)}
         binding.rvLatetsResults.setHasFixedSize(true)
@@ -121,12 +120,6 @@ class MainActivity : AppCompatActivity() {
         binding.rvNextMatches.adapter = matchAdapter
     }
 
-    private fun navigateToMatchActivity(matchID: String) {
-        val intent = Intent(this, MatchActivity::class.java)
-        intent.putExtra("matchID",matchID )
-        startActivity(intent)
-    }
-
     private fun initEventAdapter() {
 
         eventAdapter = EventAdapter(leaguesList){ eventId -> navigateToLeagueActivity(eventId)}
@@ -136,8 +129,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getUserName(userId: String) {
-        val id = userId.toInt()
+    private fun getUserName(userId: Int) {
+        val id = userId
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse: Response<UserDataResponse> =
                 retrofit.apiCall.getUserName(id)
@@ -163,18 +156,13 @@ class MainActivity : AppCompatActivity() {
         binding.tvWelcome.text = "Welcome back, $name"
     }
 
-    private fun searchEventByName(query: String) {
-        // IMPLEMENT SEARCH QUERY ON LEAGUE EVENTS
-    }
 
-    private fun navigateToLeagueActivity(id: String) {
-        val intent = Intent(this, LeagueActivity::class.java)
-        startActivity(intent)
-    }
 
-    private fun navigateToNewTeamActivity(userId: String) {
+
+    private fun navigateToNewTeamActivity(userId: Int) {
+        val userIDString = userID.toString()
         val intent = Intent(this, NewTeamActivity::class.java)
-        intent.putExtra("userId",userId )
+        intent.putExtra("userIDString",userIDString )
         startActivity(intent)
     }
 
@@ -183,10 +171,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToTeamActivity(teamID: String) {
-        val id = teamID.toInt()
+        val userIDString = userID.toString()
         val intent = Intent(this, MyTeamActivity::class.java)
-        intent.putExtra("teamID",id )
+        intent.putExtra("teamIDString",teamID )
+        intent.putExtra("userIDString",userIDString)
         startActivity(intent)
     }
+
+    private fun navigateToLeagueActivity(id: String) {
+        val intent = Intent(this, LeagueActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToMatchActivity(matchID: String) {
+        val intent = Intent(this, MatchActivity::class.java)
+        intent.putExtra("matchID",matchID )
+        startActivity(intent)
+    }
+
+    private fun searchEventByName(query: String) {
+        // IMPLEMENT SEARCH QUERY ON LEAGUE EVENTS
+    }
+
 }
 

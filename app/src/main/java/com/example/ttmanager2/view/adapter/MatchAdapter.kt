@@ -1,4 +1,4 @@
-package com.example.ttmanager2.adapter
+package com.example.ttmanager2.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,10 @@ import com.example.ttmanager2.R
 import com.example.ttmanager2.model.League
 import com.example.ttmanager2.model.Match
 import com.example.ttmanager2.model.TeamItemResponse
-import com.example.ttmanager2.viewHolder.EventViewHolder
-import com.example.ttmanager2.viewHolder.FactionViewHolder
-import com.example.ttmanager2.viewHolder.MatchViewHolder
-import com.example.ttmanager2.viewHolder.TeamViewHolder
+import com.example.ttmanager2.view.viewHolder.EventViewHolder
+import com.example.ttmanager2.view.viewHolder.FactionViewHolder
+import com.example.ttmanager2.view.viewHolder.MatchViewHolder
+import com.example.ttmanager2.view.viewHolder.TeamViewHolder
 
 class MatchAdapter (
     private var matchList: List<Match> = emptyList(),

@@ -10,9 +10,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ttmanager2.R
-import com.example.ttmanager2.adapter.FactionAdapter
-import com.example.ttmanager2.adapter.PositionalMainAdapter
-import com.example.ttmanager2.adapter.PositionalSecondaryAdapter
+import com.example.ttmanager2.view.adapter.FactionAdapter
+import com.example.ttmanager2.view.adapter.PositionalMainAdapter
+import com.example.ttmanager2.view.adapter.PositionalSecondaryAdapter
 import com.example.ttmanager2.databinding.ActivityNewTeamBinding
 import com.example.ttmanager2.model.FactionDataResponse
 import com.example.ttmanager2.model.FactionItemResponse
@@ -32,6 +32,7 @@ class NewTeamActivity : AppCompatActivity() {
     private lateinit var positionalMainAdapter: PositionalMainAdapter
     private lateinit var positionalSecondaryAdapter: PositionalSecondaryAdapter
     private var selectedFaction: String? = null
+    private var userID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +52,27 @@ class NewTeamActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        userID = intent.getStringExtra("userIDString")!!.toInt()
 
         initFactionAdapter()
         initPositionalMainAdapter()
         initPositionalSecondaryAdapter()
         initCreateTeamBtn()
+        initBtnBack()
         loadTeams()
+    }
+
+    private fun initBtnBack() {
+        binding.btnBackHome.setOnClickListener{
+            navigateToMainActivity()
+        }
+    }
+
+    private fun navigateToMainActivity() {
+        val idString = userID.toString()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("idString",idString)
+        startActivity(intent)
     }
 
     private fun initCreateTeamBtn() {
@@ -132,24 +148,25 @@ class NewTeamActivity : AppCompatActivity() {
     }
 
     private fun navigateToTeamActivity(id: Int) {
-
+        val teamID= id.toString()
+        val userIDString = userID.toString()
         val intent = Intent(this, MyTeamActivity::class.java)
-
-        intent.putExtra("teamID",id )
+        intent.putExtra("teamIDString",teamID )
+        intent.putExtra("userIDString",userIDString)
         startActivity(intent)
     }
 
     private fun insertTeam(selectedFaction: String, teamName: String) {
-        val userId = intent.getStringExtra("userId").toString().toInt()
+
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse: Response<TeamDataResponse> =
-                retrofit.apiCall.insertNewTeam(teamName, selectedFaction,userId)
+                retrofit.apiCall.insertNewTeam(teamName, selectedFaction,userID)
             if (myResponse.isSuccessful) {
                 val response: TeamDataResponse? = myResponse.body()
                 if (response!!.response == "100") {
                     Log.i("Cuerpo de la consulta", response.toString())
                     runOnUiThread {
-                        getTeam(selectedFaction, teamName, userId)
+                        getTeam(selectedFaction, teamName, userID)
                     }
                 } else {
                     runOnUiThread {
@@ -162,10 +179,10 @@ class NewTeamActivity : AppCompatActivity() {
 
     }
 
-    private fun getTeam(selectedFaction: String, teamName: String, userId: Int) {
+    private fun getTeam(selectedFaction: String, teamName: String, userID: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse: Response<TeamDataResponse> =
-                retrofit.apiCall.getTeamInfo(teamName, selectedFaction,userId)
+                retrofit.apiCall.getTeamInfo(teamName, selectedFaction,userID)
             if (myResponse.isSuccessful) {
                 val response: TeamDataResponse? = myResponse.body()
                 if (response!!.response == "100") {

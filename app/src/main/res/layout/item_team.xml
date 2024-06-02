@@ -36,11 +36,11 @@
 
         <!-- NOMBRE Y FACCION -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="4dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical">
             <!-- NOMBRE -->
             <TextView
@@ -64,7 +64,7 @@
 
         <!-- VALOR DE EQUIPO -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
@@ -99,7 +99,7 @@
             android:id="@+id/TVMyTeamRecord"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:paddingRight="12dp"
             android:fontFamily="@font/oxanium_light"
             android:gravity="center"
             android:textSize="14dp"

@@ -30,7 +30,8 @@
                 android:src="@drawable/bblogoicon2018_web"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/tvMyTeamName"
@@ -57,13 +58,15 @@
                 tools:text="Dark Elf" />
 
             <ImageButton
+                android:id="@+id/btnBackHome"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="@color/primary140"
                 android:src="@drawable/icn_home_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
 
 
             <androidx.cardview.widget.CardView
@@ -92,8 +95,10 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        
 
     </androidx.cardview.widget.CardView>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -122,7 +127,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <!--Header-->
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
@@ -132,7 +138,7 @@
 
                         <TextView
                             android:id="@+id/tvCardHeaderR"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp"
                             android:layout_marginVertical="2dp"
@@ -148,23 +154,23 @@
                             android:id="@+id/ivEditRoster"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/icnedit"
+                            android:src="@drawable/icn_edit"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </LinearLayout>
-                    <!--Body-->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <!--LeftSide-->
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="vertical">
-                            <!--HeaderLeftSide-->
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -182,7 +188,7 @@
                                     android:textSize="12sp"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    tools:text="Nº" />
+                                    android:text="Nº" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -208,18 +214,18 @@
                                     android:textSize="12sp"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    tools:text="Name" />
+                                    android:text="Name" />
 
 
                             </LinearLayout>
-                            <!--BodyLeftSide-->
+
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvTeamPlayersMain"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="4dp" />
                         </LinearLayout>
-                        <!--RightSide-->
+
                         <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -228,10 +234,10 @@
                             android:fillViewport="true">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <!--Header-->
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -248,7 +254,7 @@
                                         android:textSize="12sp"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        tools:text="Characteristics" />
+                                        android:text="Characteristics" />
 
                                     <TextView
                                         android:layout_width="256dp"
@@ -261,7 +267,7 @@
                                         android:textSize="12sp"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        tools:text="Skills and traits" />
+                                        android:text="Skills and traits" />
 
                                     <TextView
                                         android:layout_width="64dp"
@@ -377,7 +383,7 @@
 
 
                                 </LinearLayout>
-                                <!--Body-->
+
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/rvTeamPlayersSecondary"
                                     android:layout_width="match_parent"
@@ -409,7 +415,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <!--Header-->
+                    
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
@@ -419,7 +425,7 @@
 
                         <TextView
                             android:id="@+id/tvCardHeaderTS"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp"
                             android:layout_marginVertical="2dp"
@@ -435,12 +441,12 @@
                             android:id="@+id/ivEditTS"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/icnedit"
+                            android:src="@drawable/icn_edit"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </LinearLayout>
-                    <!--Body-->
+                    
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -668,7 +674,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <!--Header-->
+                    
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
@@ -678,7 +684,7 @@
 
                         <TextView
                             android:id="@+id/tvHeaderCardLR"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp"
                             android:layout_marginVertical="2dp"
@@ -691,18 +697,18 @@
                             android:text= "Latest Results" />
 
                     </LinearLayout>
-                    <!--Body-->
+                    
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:clipToPadding="false"
                         android:fillViewport="true">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvLatetsResults"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp" />
 
@@ -729,7 +735,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <!--Header-->
+                    
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
@@ -739,7 +745,7 @@
 
                         <TextView
                             android:id="@+id/tvHeaderCardNM"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp"
                             android:layout_marginVertical="2dp"
@@ -752,18 +758,18 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </LinearLayout>
-                    <!--Body-->
+                    
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:clipToPadding="false"
                         android:fillViewport="true">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvNextMatches"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp" />
 
@@ -777,4 +783,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

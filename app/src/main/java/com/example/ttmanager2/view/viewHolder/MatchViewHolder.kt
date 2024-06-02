@@ -1,4 +1,4 @@
-package com.example.ttmanager2.viewHolder
+package com.example.ttmanager2.view.viewHolder
 
 import android.annotation.SuppressLint
 import android.view.View
@@ -20,7 +20,8 @@ class MatchViewHolder (view: View): RecyclerView.ViewHolder(view) {
         binding.ivIconTeam1.setImageResource(R.drawable.dark_elf)
         binding.ivIconTeam2.setImageResource(R.drawable.bblogoicon2018_web)
         binding.root.setOnClickListener{
-            navigateToMatchActivity(matchResponse.ID.toString())
+
+            //navigateToMatchActivity(matchResponse.ID.toString())
         }
     }
 

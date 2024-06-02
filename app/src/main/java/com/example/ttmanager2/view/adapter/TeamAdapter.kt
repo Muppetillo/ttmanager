@@ -1,12 +1,12 @@
-package com.example.ttmanager2.adapter
+package com.example.ttmanager2.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ttmanager2.R
 import com.example.ttmanager2.model.TeamItemResponse
-import com.example.ttmanager2.viewHolder.FactionViewHolder
-import com.example.ttmanager2.viewHolder.TeamViewHolder
+import com.example.ttmanager2.view.viewHolder.FactionViewHolder
+import com.example.ttmanager2.view.viewHolder.TeamViewHolder
 
 class TeamAdapter (
     private var teamList: List<TeamItemResponse> = emptyList(),
