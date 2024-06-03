@@ -4,26 +4,26 @@ import com.google.gson.annotations.SerializedName
 
 data class PlayerDataResponse (
     @SerializedName("response") val response: String,
-    @SerializedName("data") val positionals: List<PlayerItemResponse>
+    @SerializedName("data") val players: List<PlayerItemResponse>
 )
 
 data class PlayerItemResponse (
-    @SerializedName("number") val number: Int,
     @SerializedName("name")val name: String,
-    @SerializedName("positional") val positional: String,
-    @SerializedName("ma")val ma: Int,
-    @SerializedName("st")val st: Int,
-    @SerializedName("ag") val ag: Int,
-    @SerializedName("pa") val pa: Int,
-    @SerializedName("av") val av: Int,
-    @SerializedName("skills")val skills: String,
-    @SerializedName("mng") val mng: Boolean,
-    @SerializedName("spp") val spp: Int,
-    @SerializedName("td")val td: Int,
-    @SerializedName("cas")val cas: Int,
-    @SerializedName("com") val com: Int,
-    @SerializedName("int") val int: Int,
+    @SerializedName("number") val number: Int,
+    @SerializedName("MA")val ma: Int,
+    @SerializedName("ST")val st: Int,
+    @SerializedName("AG") val ag: Int,
+    @SerializedName("PA") val pa: Int,
+    @SerializedName("AV") val av: Int,
+    @SerializedName("VALUE")val value: Int,
+    @SerializedName("Skills")val skills: String,
+    @SerializedName("MNG") val mng: Boolean,
+    @SerializedName("SPP") val spp: Int,
+    @SerializedName("TD")val td: Int,
+    @SerializedName("CAS")val cas: Int,
+    @SerializedName("COM") val com: Int,
+    @SerializedName("INTF") val int: Int,
     @SerializedName("mvp") val mvp: Int,
-    @SerializedName("value")val value: Int,
-
+    @SerializedName("team_Id") val team_Id: Int,
+    @SerializedName("positional") val positional: String,
     )

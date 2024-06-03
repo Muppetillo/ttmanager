@@ -18,10 +18,9 @@ data class TeamItemResponse (
     @SerializedName("teamValue")val teamValue: Int,
     @SerializedName("dedicatedFans")val dedicatedFans: Int,
     @SerializedName("cheerleaders")val cheerleaders: Int,
-    @SerializedName("assistanCoaches")val assistanCoaches: Int,
+    @SerializedName("assistantCoaches")val assistanCoaches: Int,
     @SerializedName("treasury")val treasury: Int,
     @SerializedName("wins")val wins: Int,
     @SerializedName("draws")val draws: Int,
-    @SerializedName("losses")val losses: Int
-
+    @SerializedName("losses")val losses: Int,
 )

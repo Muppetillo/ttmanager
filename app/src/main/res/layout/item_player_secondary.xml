@@ -247,11 +247,12 @@
                 tools:text="HOLA" />
 
             <ImageView
+                android:id="@+id/ivPlayerMNG"
                 android:layout_width="64dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="4dp"
                 android:layout_marginVertical="2dp"
-                android:src="@drawable/icn_league"/>
+                />
 
 
             <TextView

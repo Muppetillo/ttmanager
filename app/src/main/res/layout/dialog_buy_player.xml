@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:cardCornerRadius="24dp"
     >
 
     <androidx.cardview.widget.CardView
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary140"
-        app:cardCornerRadius="8dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -70,7 +71,7 @@
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Treasury:" />
+                            android:text="Treasury:" />
 
                         <TextView
                             android:id="@+id/tvTeamTreasury"
@@ -91,7 +92,7 @@
                         android:id="@+id/rvHirePlayers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="4dp" />
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -112,18 +113,6 @@
                             android:textColor="@color/white"
                             app:cornerRadius="12dp" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnHireDialog"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_margin="4dp"
-                            android:backgroundTint="@color/primary120"
-                            android:elevation="@dimen/cardview_default_elevation"
-                            android:fontFamily="@font/oxanium_semibold"
-                            android:text="Hire"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            app:cornerRadius="12dp" />
                     </LinearLayout>
 
                 </LinearLayout>

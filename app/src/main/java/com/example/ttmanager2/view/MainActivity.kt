@@ -156,9 +156,6 @@ class MainActivity : AppCompatActivity() {
         binding.tvWelcome.text = "Welcome back, $name"
     }
 
-
-
-
     private fun navigateToNewTeamActivity(userId: Int) {
         val userIDString = userID.toString()
         val intent = Intent(this, NewTeamActivity::class.java)

@@ -1,26 +1,34 @@
 package com.example.ttmanager2.view
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ttmanager2.R
+import com.example.ttmanager2.view.adapter.HirePlayersAdapter
 import com.example.ttmanager2.view.adapter.RosterPrimaryAdapter
 import com.example.ttmanager2.view.adapter.RosterSecondaryAdapter
 import com.example.ttmanager2.view.adapter.TeamMatchAdapter
 import com.example.ttmanager2.view.adapter.TeamResultAdapter
 import com.example.ttmanager2.databinding.ActivityMyTeamBinding
+import com.example.ttmanager2.model.PlayerDataResponse
+import com.example.ttmanager2.model.PositionalDataResponse
+import com.example.ttmanager2.model.PositionalItemResponse
 import com.example.ttmanager2.model.TeamDataResponse
 import com.example.ttmanager2.model.TeamItemResponse
 import com.example.ttmanager2.model.matchList
 import com.example.ttmanager2.model.resultList
 import com.example.ttmanager2.retrofit.RetrofitClient
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,9 +41,10 @@ class MyTeamActivity : AppCompatActivity() {
     private lateinit var rosterSecondaryAdapter: RosterSecondaryAdapter
     private lateinit var teamMatchAdapter: TeamMatchAdapter
     private lateinit var teamResultAdapter: TeamResultAdapter
+    private lateinit var hirePlayersAdapter: HirePlayersAdapter
     private var userID: Int = 0
-
-
+    private lateinit var positionals: List<PositionalItemResponse>
+    private lateinit var team: TeamItemResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,48 +58,61 @@ class MyTeamActivity : AppCompatActivity() {
         }
         retrofit = RetrofitClient()
         initUI()
-
-
     }
 
     private fun initUI() {
         userID = intent.getStringExtra("userIDString")!!.toInt()
-
-        initRosterPrimaryAdapter()
-        initRosterSecondaryAdapter()
-        initLatestMatchesAdapter()
-        initNextMatchesAdapter()
-        initBtnEditRoster()
-        initBtnBackHome()
-
         var teamIDString = intent.getStringExtra("teamIDString")
         val teamID = teamIDString!!.toInt()
         Log.i("Cuerpo de la consulta","Antes de la consulta "+ teamID.toString())
         getTeamInfo(teamID)
+        initAdapters()
+        initBtnBackHome()
+        initBtnEditRoster()
     }
 
-    private fun initBtnBackHome() {
-        binding.btnBackHome.setOnClickListener{
-            navigateToMainActivity()
+    private fun getTeamInfo(teamID: Int) {
+        Log.i("Corutinas","getTeamInfo")
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<TeamDataResponse> =
+                retrofit.apiCall.getTeamInfoByID(teamID)
+            if (myResponse.isSuccessful) {
+                val response: TeamDataResponse? = myResponse.body()
+                if (response!!.response == "100") {
+                    runOnUiThread {
+                        LoadData(response.teams[0])
+                    }
+                } else {
+                    runOnUiThread {
+                        showMessage("Load data failed")
+                    }
+
+                }
+            }
         }
     }
 
-    private fun navigateToMainActivity() {
-        val idString = userID.toString()
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("idString",idString)
-        startActivity(intent)
+    private fun initAdapters() {
+        initRosterPrimaryAdapter()
+        initRosterSecondaryAdapter()
+        initLatestMatchesAdapter()
+        initNextMatchesAdapter()
     }
 
-
-    private fun initBtnEditRoster() {
-        binding.ivEditRoster.setOnClickListener{
-            openHirePlayerDialog()
-        }
+    private fun initRosterPrimaryAdapter() {
+        rosterPrimaryAdapter = RosterPrimaryAdapter()
+        binding.rvTeamPlayersMain.setHasFixedSize(true)
+        binding.rvTeamPlayersMain.layoutManager = LinearLayoutManager(this,
+            LinearLayoutManager.VERTICAL,false)
+        binding.rvTeamPlayersMain.adapter = rosterPrimaryAdapter
     }
 
-    private fun openHirePlayerDialog() {
-
+    private fun initRosterSecondaryAdapter() {
+        rosterSecondaryAdapter = RosterSecondaryAdapter()
+        binding.rvTeamPlayersSecondary.setHasFixedSize(true)
+        binding.rvTeamPlayersSecondary.layoutManager = LinearLayoutManager(this,
+            LinearLayoutManager.VERTICAL,false)
+        binding.rvTeamPlayersSecondary.adapter = rosterSecondaryAdapter
     }
 
     private fun initNextMatchesAdapter() {
@@ -109,55 +131,32 @@ class MyTeamActivity : AppCompatActivity() {
         binding.rvNextMatches.adapter = teamMatchAdapter
     }
 
-    private fun initRosterSecondaryAdapter() {
-        rosterSecondaryAdapter = RosterSecondaryAdapter()
-        binding.rvTeamPlayersSecondary.setHasFixedSize(true)
-        binding.rvTeamPlayersSecondary.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.VERTICAL,false)
-        binding.rvTeamPlayersSecondary.adapter = rosterSecondaryAdapter
+    private fun initBtnBackHome() {
+        binding.btnBackHome.setOnClickListener{
+            navigateToMainActivity()
+        }
     }
 
-    private fun initRosterPrimaryAdapter() {
-        rosterPrimaryAdapter = RosterPrimaryAdapter()
-        binding.rvTeamPlayersMain.setHasFixedSize(true)
-        binding.rvTeamPlayersMain.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.VERTICAL,false)
-        binding.rvTeamPlayersMain.adapter = rosterPrimaryAdapter
-    }
-
-    private fun getTeamInfo(teamID: Int) {
-        Log.i("Cuerpo de la consulta","Antes de abrir el hilo "+ teamID.toString())
-        CoroutineScope(Dispatchers.IO).launch {
-            Log.i("Cuerpo de la consulta","En el hilo "+ teamID.toString())
-            val myResponse: Response<TeamDataResponse> =
-                retrofit.apiCall.getTeamInfoByID(teamID)
-            if (myResponse.isSuccessful) {
-                val response: TeamDataResponse? = myResponse.body()
-                if (response!!.response == "100") {
-                    Log.i("Cuerpo de la consulta", response.toString())
-                    runOnUiThread {
-                        LoadData(response.teams[0])
-                    }
-                } else {
-                    runOnUiThread {
-                        showMessage("Load data failed")
-                    }
-
-                }
-            }
+    private fun initBtnEditRoster() {
+        binding.ivEditRoster.setOnClickListener{
+            openHirePlayerDialog()
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun LoadData(team: TeamItemResponse) {
-        initHeader(team)
-        //initRoster(team.id)
-        //initLatestResults(team.id)
-        //initNextMatchs(team.id)
-        initTechStaf(team)
+        this.team = team
+        LoadHeaderInfo()
+        LoadRoster()
+        LoadPositionalsInfo()
+        LoadTechStaffInfo()
+        //LoadLatestResults(team.id)
+        //LoadNextMatchs(team.id)
+        //LoadTechStaf()
+
     }
 
-    private fun initHeader(team: TeamItemResponse) {
+    private fun LoadHeaderInfo() {
         binding.tvMyTeamName.text = team.name
         binding.tvMyTeamFaction.text = team.faction
         binding.tvMyTeamValue.text = "${team.teamValue}"
@@ -195,7 +194,46 @@ class MyTeamActivity : AppCompatActivity() {
         }
     }
 
-    private fun initTechStaf(team: TeamItemResponse) {
+    private fun LoadRoster() {
+        Log.i("Corutinas","initRoster ${team.id}")
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<PlayerDataResponse> =
+                retrofit.apiCall.getPlayersByTeamID(team.id)
+            if (myResponse.isSuccessful) {
+                val response: PlayerDataResponse? = myResponse.body()
+                if (response!!.response == "Success") {
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        rosterPrimaryAdapter.updateList(response.players)
+                        rosterSecondaryAdapter.updateList(response.players)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun LoadPositionalsInfo() {
+        Log.i("Corutinas","initPositionalsInfo")
+        Log.i("Corutinas",team.factionId)
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<PositionalDataResponse> =
+                retrofit.apiCall.getPositionalInfo(team.factionId)
+            if (myResponse.isSuccessful) {
+                val response: PositionalDataResponse? = myResponse.body()
+                if (response != null) {
+                    runOnUiThread {
+                        setPositionals(response.positionals)
+                    }
+                } else {
+                    runOnUiThread {
+                        showMessage("Load data failed")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun LoadTechStaffInfo() {
         binding.tvTreasury.text = "${team.treasury}k"
         binding.tvRerolls.text ="${team.rerolls}"
         binding.tvDedicatedFans.text ="${team.dedicatedFans}"
@@ -203,6 +241,90 @@ class MyTeamActivity : AppCompatActivity() {
         binding.tvCheerleaders.text ="${team.cheerleaders}"
         binding.tvApothecary.text = "${team.hasApothecary}"
         binding.tvSpecialRules.text = "Pending..."
+    }
+
+    private fun openHirePlayerDialog() {
+
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_buy_player)
+
+        val tvMyTreasury: TextView = dialog.findViewById(R.id.tvTeamTreasury)
+        val rvPositionals: RecyclerView = dialog.findViewById(R.id.rvHirePlayers)
+        val btnBack: MaterialButton = dialog.findViewById(R.id.btnBackDialog)
+
+        tvMyTreasury.text = team.treasury.toString() + "k"
+        btnBack.setOnClickListener{
+            dialog.hide()
+        }
+        hirePlayersAdapter = HirePlayersAdapter{positionalItem -> updateRoster(positionalItem)}
+        rvPositionals.setHasFixedSize(true)
+        rvPositionals.layoutManager = LinearLayoutManager(this,
+            LinearLayoutManager.VERTICAL,false)
+        rvPositionals.adapter = hirePlayersAdapter
+        hirePlayersAdapter.updateList(positionals)
+
+
+        dialog.show()
+
+    }
+
+    private fun updateRoster(positionalItem: PositionalItemResponse) {
+        updateTeam(positionalItem.price)
+        insertNewPlayer(positionalItem.name)
+    }
+
+    private fun updateTeam(price: Int) {
+        Log.i("Corutinas","updateTeam")
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<TeamDataResponse> =
+                retrofit.apiCall.updateTeam(team.id,price)
+            if (myResponse.isSuccessful) {
+                val response: TeamDataResponse? = myResponse.body()
+                if (response!!.response == "100") {
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        showMessage("Player succesfully hired!")
+                    }
+                } else {
+                    runOnUiThread{
+                        showMessage("Something went wrong :(")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun insertNewPlayer(name: String) {
+        Log.i("Corutinas","InsertNewPlayer")
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<PlayerDataResponse> =
+                retrofit.apiCall.insertNewPlayer(name,team.id,team.factionId)
+            if (myResponse.isSuccessful) {
+                val response: PlayerDataResponse? = myResponse.body()
+                if (response!!.response == "100") {
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        showMessage("Player succesfully hired!")
+
+                    }
+                } else {
+                    runOnUiThread{
+                        showMessage("Something went wrong :(")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setPositionals(positionals: List<PositionalItemResponse>) {
+        this.positionals = positionals
+    }
+
+    private fun navigateToMainActivity() {
+        val idString = userID.toString()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("idString",idString)
+        startActivity(intent)
     }
 
     private fun showMessage(message: String) {

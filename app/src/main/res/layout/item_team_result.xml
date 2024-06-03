@@ -17,6 +17,7 @@
         android:layout_marginHorizontal="8dp"/>
 
     <LinearLayout
+        android:id="@+id/lytOpposingTeam"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -49,14 +50,16 @@
 
     <LinearLayout
         android:id="@+id/divHeader"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:orientation="horizontal"
         android:layout_marginHorizontal="12dp"
         app:layout_constraintStart_toEndOf="@id/lytMyResult"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/lytOpposingTeam"
+
         >
         <!-- SCORE TEAM 1 -->
         <LinearLayout

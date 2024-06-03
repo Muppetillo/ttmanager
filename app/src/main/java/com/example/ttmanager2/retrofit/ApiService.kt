@@ -1,6 +1,8 @@
 package com.example.ttmanager2.retrofit
 
+import android.media.MediaDrm.PlaybackComponent
 import com.example.ttmanager2.model.FactionDataResponse
+import com.example.ttmanager2.model.PlayerDataResponse
 import com.example.ttmanager2.model.PositionalDataResponse
 import com.example.ttmanager2.model.TeamDataResponse
 import com.example.ttmanager2.model.UserDataResponse
@@ -57,6 +59,24 @@ interface ApiService {
         @Query("user_Id") userID: Int,
     ): Response<TeamDataResponse>
 
+    @GET ("getPlayersByTeamID.php")
+    suspend fun getPlayersByTeamID (
+        @Query("team_Id") team_Id: Int
+    ): Response <PlayerDataResponse>
 
+    @FormUrlEncoded
+    @POST ("updateTeam.php")
+    suspend fun updateTeam (
+        @Field("ID")id: Int,
+        @Field("value")value: Int,
+    ): Response <TeamDataResponse>
+
+    @FormUrlEncoded
+    @POST("insertNewPlayer.php")
+    suspend fun insertNewPlayer(
+        @Field("name") name:String,
+        @Field("team_Id") team_Id: Int,
+        @Field("faction_Id") faction_Id:String,
+    ): Response <PlayerDataResponse>
 
 }

@@ -2,6 +2,7 @@ package com.example.ttmanager2.view.viewHolder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ttmanager2.R
 import com.example.ttmanager2.databinding.ItemPlayerSecondaryBinding
 import com.example.ttmanager2.model.PlayerItemResponse
 
@@ -18,7 +19,10 @@ class RosterSecondaryViewHolder (view: View): RecyclerView.ViewHolder(view) {
         } else {
             binding.tvPlayerPA.text = "-"
         }
-
+        if(playerItem.mng == true){
+            binding.ivPlayerMNG.setImageResource(R.drawable.icn_check)
+        }
+        binding.tvPlayerSPP.text = playerItem.spp.toString()
         binding.tvPlayerAV.text = playerItem.av.toString()+"+"
         binding.tvPlayerSkills.text = playerItem.skills
         binding.tvPlayerTD.text = playerItem.td.toString()
@@ -27,5 +31,6 @@ class RosterSecondaryViewHolder (view: View): RecyclerView.ViewHolder(view) {
         binding.tvPlayerCOM.text = playerItem.com.toString()
         binding.tvPlayerMVP.text = playerItem.mvp.toString()
         binding.tvPlayerValue.text = playerItem.value.toString()+"k"
+
     }
 }

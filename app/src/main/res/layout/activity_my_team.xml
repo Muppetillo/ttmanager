@@ -180,7 +180,6 @@
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="4dp"
                                     android:layout_marginVertical="2dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/oxanium_semibold"
@@ -193,7 +192,7 @@
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="4dp"
+
                                     android:layout_marginVertical="2dp"
                                     android:layout_weight="2"
                                     android:fontFamily="@font/oxanium_semibold"
@@ -206,7 +205,7 @@
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="4dp"
+
                                     android:layout_marginVertical="2dp"
                                     android:layout_weight="3"
                                     android:fontFamily="@font/oxanium_semibold"
@@ -223,7 +222,7 @@
                                 android:id="@+id/rvTeamPlayersMain"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="4dp" />
+                                />
                         </LinearLayout>
 
                         <HorizontalScrollView
@@ -247,7 +246,6 @@
                                     <TextView
                                         android:layout_width="256dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="4dp"
                                         android:layout_marginVertical="2dp"
                                         android:fontFamily="@font/oxanium_semibold"
                                         android:textColor="@color/white"
@@ -388,7 +386,7 @@
                                     android:id="@+id/rvTeamPlayersSecondary"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="4dp" />
+                                     />
                             </LinearLayout>
                         </HorizontalScrollView>
 

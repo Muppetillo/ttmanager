@@ -62,6 +62,13 @@
                     android:gravity="center_vertical|end"
                     android:layout_marginHorizontal="4dp"
                     >
+                    <TextView
+                        android:id="@+id/tvPositionalValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text = "150k"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/oxanium_medium"/>
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/btnAddPositional"
@@ -69,14 +76,6 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
                         android:src="@drawable/icn_add_outline"
-                        app:fabCustomSize="32dp"/>
-
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/btnSubPositional"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:src="@drawable/icn_remove_outline"
                         app:fabCustomSize="32dp"/>
 
                 </LinearLayout>
